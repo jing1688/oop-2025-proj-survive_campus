@@ -19,6 +19,8 @@ class Player:
         self.sleepiness = 10
         self.social = 0
         self.grade = 0
+        self.money = 4000
+        self.explore=0
 
     def move(self, dx, dy, bounds, obstacles):
         old = self.rect.topleft
