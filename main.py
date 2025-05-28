@@ -11,7 +11,11 @@ from levels import LEVELS
 
 
 ##====參數====##
-MAX_INTERACTIONS=10
+
+# ====== 時間制 ======
+HOURS_PER_MONTH = 40
+TOTAL_MONTHS    = 4
+MAX_HOURS       = HOURS_PER_MONTH * TOTAL_MONTHS        # 160
 PLAYER_SPEED=3
 # 初始化 mixer
 pygame.mixer.init()
@@ -29,7 +33,7 @@ def main():
     player = Player(WIDTH//2, HEIGHT//2)
     buildings = LEVELS[0](WIDTH, HEIGHT)
 
-    interactions = 0
+    hours_spent = 0      # 累計已花費的時間（小時）
     game_over = False
     ending = None
 
