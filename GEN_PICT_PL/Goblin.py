@@ -55,6 +55,12 @@ def generate_goblin(
     body = [ (w*0.25, h*0.60), (w*0.75, h*0.95) ]
     draw.rectangle(body, fill=skin_color)
 
+     # 小腳 (左右兩隻)
+    foot_width, foot_height = w*0.20, h*0.07
+    left_foot  = [ (w*0.30, h*0.90), (w*0.30+foot_width, h*0.90+foot_height) ]
+    right_foot = [ (w*0.50, h*0.90), (w*0.50+foot_width, h*0.90+foot_height) ]
+    draw.rectangle(left_foot, fill=foot_color)
+    draw.rectangle(right_foot, fill=foot_color)
     # 可選：角
     if horn:
         horn_left  = [(w*0.30, h*0.18), (w*0.28, h*0.05), (w*0.35, h*0.15)]
