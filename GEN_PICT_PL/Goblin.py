@@ -10,7 +10,7 @@ def generate_goblin(
     mouth_color=(139, 69, 19, 255),
     horn=False,
     horn_color=(200, 200, 200, 255),
-    foot_color=(30, 180, 30, 255)  # 小腳顏色
+    foot_color=(100, 130, 230, 255)  # 小腳顏色
 ):
     """
     生成一隻像素風格的 Goblin。
@@ -57,9 +57,9 @@ def generate_goblin(
     draw.rectangle(body, fill=skin_color)
 
      # 小腳 (左右兩隻)
-    foot_width, foot_height = w*0.20, h*0.07
+    foot_width, foot_height = w*0.10, h*0.07
     left_foot  = [ (w*0.30, h*0.90), (w*0.30+foot_width, h*0.90+foot_height) ]
-    right_foot = [ (w*0.50, h*0.90), (w*0.50+foot_width, h*0.90+foot_height) ]
+    right_foot = [ (w*0.60, h*0.90), (w*0.60+foot_width, h*0.90+foot_height) ]
     draw.rectangle(left_foot, fill=foot_color)
     draw.rectangle(right_foot, fill=foot_color)
     # 可選：角
