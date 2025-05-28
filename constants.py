@@ -42,6 +42,19 @@ BUILDING_INFO = {
     },
 }
 
+ACTION_HOURS = {
+    "CAT_TOUCH":  1,
+    "CAT_FEED":   1,
+    "CAT_MEOW":   0.5,
+    "CAT_IDLE":   0,      # 不做事
+
+    "EAT":        2,
+    "STUDY":      3,
+    "EXAM":       4,
+    "SLEEP_CLASS":1,
+}
+
+
 # 路徑
 NOTO_FONT_PATH  = "NotoSansTC-Regular.otf"
 CAT_IMAGE_PATH  = "pictures/cat.png"
