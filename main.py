@@ -53,21 +53,21 @@ def main():
             if submenu_kind and e.type == KEYDOWN:
                 if submenu_kind == 'cat':
                     if e.key == K_1:
-                        interactions += 1
+                        hours_spent += ACTION_HOURS["CAT_TOUCH"]
                         feedback_text = "他不想讓你摸"
                     elif e.key == K_2:
-                        interactions += 1
+                        hours_spent += ACTION_HOURS["CAT_FEED"]
                         feedback_text = "你沒有貓糧"
                     elif e.key == K_3:
-                        interactions += 1
+                        hours_spent += ACTION_HOURS["CAT_MEOW"]
                         feedback_text = "喵？"
                         CAT_SOUND.play()
                     elif e.key == K_4:
-                        interactions += 1
+                        hours_spent += ACTION_HOURS["CAT_IDLE"]
                         feedback_text = ""
                 elif submenu_kind == 'restaurant':
                     if e.key == K_y:
-                        interactions += 1
+                        hours_spent += ACTION_HOURS["EAT"]
                         player.sleepiness -= 1
                         player.fullness = 10
                         player.social += 1
@@ -76,21 +76,21 @@ def main():
                         feedback_text = "你決定先離開"
                 elif submenu_kind == 'classroom':
                     if e.key == K_1:
-                        interactions += 1
+                        hours_spent += ACTION_HOURS["STUDY"]
                         player.sleepiness -= 1
                         player.grade += 1
                         feedback_text = "上課"
                     elif e.key == K_2:
-                        interactions += 1
+                        hours_spent += ACTION_HOURS["EXAM"]
                         player.sleepiness -= 2
                         player.grade += 2
                         feedback_text = "考試"
                     elif e.key == K_3:
-                        interactions += 1
+                        hours_spent += ACTION_HOURS["SLEEP_CLASS"]
                         player.sleepiness += 2
                         feedback_text = "睡著了"
                 submenu_kind = None
-                game_over, ending = check_game_over(player, interactions)
+                game_over, ending = check_game_over(player, hours_spent)
                 feedback_timer = FPS
                 if game_over:
                     # 跳出主迴圈
