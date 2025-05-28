@@ -27,8 +27,7 @@
 #         color = RESTAURANT_COLOR if self.kind=="restaurant" else CLASSROOM_COLOR
 #         pygame.draw.rect(screen, color, self.rect)
 import pygame
-from constants import BUILDING_SIZE, BUILDING_INFO, CAT_IMAGE_PATH,CAT_SOUND_PATH  = "sounds/Free_Cat_SFX_Meow2.wav"
-GOBLIN_IMAGE_PATH
+from constants import BUILDING_SIZE, BUILDING_INFO, CAT_IMAGE_PATH,CAT_SOUND_PATH ,GOBLIN_IMAGE_PATH
 
 # --- 載入、快取圖片 ---
 _cat_surface = None
