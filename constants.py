@@ -4,7 +4,7 @@ HEIGHT        = 600
 FPS           = 60
 
 # 玩家／建築尺寸
-PLAYER_SIZE   = 20
+PLAYER_SIZE   = 40
 BUILDING_SIZE = (60, 60)
 
 # 顏色設定 (R, G, B)
