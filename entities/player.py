@@ -1,7 +1,14 @@
 
 import pygame
-from constants import PLAYER_SIZE, PLAYER_COLOR
+from constants import PLAYER_SIZE, PLAYER_COLOR,GOBLIN_IMAGE_PATH
 
+def get_goblin_surface():
+    # 這裡可以加入 Goblin 的圖片載入邏輯
+    global _goblin_surface
+    if _cat_surface is None:
+        img = pygame.image.load(GOBLIN_IMAGE_PATH).convert_alpha()
+        _cat_surface = pygame.transform.smoothscale(img, BUILDING_SIZE)
+    return _goblin_surface
 class Player:
     def __init__(self, x, y):
         self.rect = pygame.Rect(x, y, PLAYER_SIZE, PLAYER_SIZE)
