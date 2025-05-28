@@ -43,6 +43,6 @@ BUILDING_INFO = {
 }
 
 # 路徑
-NOTO_FONT_PATH  = "final_project/NotoSansTC-Regular.otf"
-CAT_IMAGE_PATH  = "final_project/pictures/cat.png"
-CAT_SOUND_PATH  = "final_project/sounds/Free_Cat_SFX_Meow2.wav"
+NOTO_FONT_PATH  = "NotoSansTC-Regular.otf"
+CAT_IMAGE_PATH  = "pictures/cat.png"
+CAT_SOUND_PATH  = "sounds/Free_Cat_SFX_Meow2.wav"
