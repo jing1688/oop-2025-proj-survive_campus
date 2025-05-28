@@ -54,7 +54,7 @@ class Building:
 
     def interact(self, player):
         # 通用：每次互動都消耗睡眠度
-        player.sleepiness -= 1
+        player.health -= 1
 
         if self.kind == "cat":
             # 只回傳事件，由 main.py 控制播放音效 & 不改其他屬性

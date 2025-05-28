@@ -11,7 +11,6 @@ from levels import LEVELS
 
 
 ##====參數====##
-MAX_INTERACTIONS=10
 PLAYER_SPEED=3
 # 初始化 mixer
 pygame.mixer.init()
@@ -29,7 +28,7 @@ def main():
     player = Player(WIDTH//2, HEIGHT//2)
     buildings = LEVELS[0](WIDTH, HEIGHT)
 
-    interactions = 0
+    hours_spent = 0      # 累計已花費的時間（小時）
     game_over = False
     ending = None
 
@@ -49,22 +48,22 @@ def main():
             if submenu_kind and e.type == KEYDOWN:
                 if submenu_kind == 'cat':
                     if e.key == K_1:
-                        interactions += 1
+                        hours_spent += ACTION_HOURS["CAT_TOUCH"]
                         feedback_text = "他不想讓你摸"
                     elif e.key == K_2:
-                        interactions += 1
+                        hours_spent += ACTION_HOURS["CAT_FEED"]
                         feedback_text = "你沒有貓糧"
                     elif e.key == K_3:
-                        interactions += 1
+                        hours_spent += ACTION_HOURS["CAT_MEOW"]
                         feedback_text = "喵？"
                         CAT_SOUND.play()
                     elif e.key == K_4:
-                        interactions += 1
+                        hours_spent += ACTION_HOURS["CAT_IDLE"]
                         feedback_text = ""
                 elif submenu_kind == 'restaurant':
                     if e.key == K_y:
-                        interactions += 1
-                        player.sleepiness -= 1
+                        hours_spent += ACTION_HOURS["EAT"]
+                        player.health -= 1
                         player.fullness = 10
                         player.social += 1
                         feedback_text = "你吃得很開心！"
@@ -72,21 +71,21 @@ def main():
                         feedback_text = "你決定先離開"
                 elif submenu_kind == 'classroom':
                     if e.key == K_1:
-                        interactions += 1
-                        player.sleepiness -= 1
+                        hours_spent += ACTION_HOURS["STUDY"]
+                        player.health -= 1
                         player.grade += 1
                         feedback_text = "上課"
                     elif e.key == K_2:
-                        interactions += 1
-                        player.sleepiness -= 2
+                        hours_spent += ACTION_HOURS["EXAM"]
+                        player.health -= 2
                         player.grade += 2
                         feedback_text = "考試"
                     elif e.key == K_3:
-                        interactions += 1
-                        player.sleepiness += 2
+                        hours_spent += ACTION_HOURS["SLEEP_CLASS"]
+                        player.health += 2
                         feedback_text = "睡著了"
                 submenu_kind = None
-                game_over, ending = check_game_over(player, interactions)
+                game_over, ending = check_game_over(player, hours_spent)
                 feedback_timer = FPS
                 if game_over:
                     # 跳出主迴圈
@@ -108,7 +107,7 @@ def main():
         for b in buildings:
             b.draw(screen)
         player.draw(screen)
-        draw_hud(screen, font_small, player, interactions)
+        draw_hud(screen, font_small, player, hours_spent)
 
         near = next((b for b in buildings if player.rect.colliderect(b.detect_rect)), None)
         if submenu_kind == 'cat':

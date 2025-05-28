@@ -4,7 +4,7 @@ HEIGHT        = 600
 FPS           = 60
 
 # 玩家／建築尺寸
-PLAYER_SIZE   = 20
+PLAYER_SIZE   = 40
 BUILDING_SIZE = (60, 60)
 
 # 顏色設定 (R, G, B)
@@ -14,6 +14,10 @@ RESTAURANT_COLOR = (255, 165,   0)
 CLASSROOM_COLOR  = (128,   0, 128)
 CAT_COLOR        = (255, 180,   0)  # 若未使用可留作備用
 
+HOURS_PER_MONTH = 40
+TOTAL_MONTHS    = 4
+MAX_HOURS       = HOURS_PER_MONTH * TOTAL_MONTHS  # 160
+
 # 各種類建築的屬性集中表
 BUILDING_INFO = {
     "restaurant": {
@@ -22,7 +26,7 @@ BUILDING_INFO = {
         "effect": lambda p: (
             setattr(p, "fullness", 10),
             setattr(p, "social",   p.social + 1),
-            setattr(p, "sleepiness", p.sleepiness - 1),
+            setattr(p, "health", p.health - 1),
         ),
     },
     "classroom": {
@@ -31,7 +35,7 @@ BUILDING_INFO = {
         "effect": lambda p: (
             setattr(p, "fullness",  p.fullness - 1),
             setattr(p, "grade",     p.grade + 1),
-            setattr(p, "sleepiness", p.sleepiness - 1),
+            setattr(p, "health", p.health - 1),
         ),
     },
     "cat": {
@@ -41,6 +45,19 @@ BUILDING_INFO = {
         "effect": lambda p: None,
     },
 }
+
+ACTION_HOURS = {
+    "CAT_TOUCH":  1,
+    "CAT_FEED":   1,
+    "CAT_MEOW":   0.5,
+    "CAT_IDLE":   0,      # 不做事
+
+    "EAT":        2,
+    "STUDY":      3,
+    "EXAM":       4,
+    "SLEEP_CLASS":1,
+}
+
 
 # 路徑
 NOTO_FONT_PATH  = "NotoSansTC-Regular.otf"
