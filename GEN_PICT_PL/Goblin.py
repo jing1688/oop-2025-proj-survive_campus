@@ -9,7 +9,7 @@ def generate_goblin(
     nose_color=(0, 100, 0, 255),
     mouth_color=(139, 69, 19, 255),
     horn=False,
-    horn_color=(200, 200, 200, 255)
+    horn_color=(200, 200, 200, 255),
     foot_color=(30, 180, 30, 255)  # 小腳顏色
 ):
     """
