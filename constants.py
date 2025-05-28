@@ -14,6 +14,10 @@ RESTAURANT_COLOR = (255, 165,   0)
 CLASSROOM_COLOR  = (128,   0, 128)
 CAT_COLOR        = (255, 180,   0)  # 若未使用可留作備用
 
+HOURS_PER_MONTH = 40
+TOTAL_MONTHS    = 4
+MAX_HOURS       = HOURS_PER_MONTH * TOTAL_MONTHS  # 160
+
 # 各種類建築的屬性集中表
 BUILDING_INFO = {
     "restaurant": {

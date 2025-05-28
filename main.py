@@ -11,11 +11,6 @@ from levels import LEVELS
 
 
 ##====參數====##
-
-# ====== 時間制 ======
-HOURS_PER_MONTH = 40
-TOTAL_MONTHS    = 4
-MAX_HOURS       = HOURS_PER_MONTH * TOTAL_MONTHS        # 160
 PLAYER_SPEED=3
 # 初始化 mixer
 pygame.mixer.init()

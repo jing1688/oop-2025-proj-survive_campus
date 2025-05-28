@@ -1,5 +1,5 @@
 from constants import *
-from main import HOURS_PER_MONTH, MAX_HOURS, TOTAL_MONTHS
+from constants import HOURS_PER_MONTH, MAX_HOURS, TOTAL_MONTHS
 def draw_hud(screen, font, player, hours_spent):
     month = min(hours_spent // HOURS_PER_MONTH + 1, TOTAL_MONTHS)
     remain= MAX_HOURS - hours_spent
