@@ -107,7 +107,7 @@ def main():
         for b in buildings:
             b.draw(screen)
         player.draw(screen)
-        draw_hud(screen, font_small, player, interactions)
+        draw_hud(screen, font_small, player, hours_spent)
 
         near = next((b for b in buildings if player.rect.colliderect(b.detect_rect)), None)
         if submenu_kind == 'cat':

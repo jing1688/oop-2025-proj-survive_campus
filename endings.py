@@ -1,4 +1,4 @@
-from main import MAX_HOURS
+from constants import MAX_HOURS
 # endings.py
 # MAX_HOURS = 160     # 或直接 import constants 裡的
 
