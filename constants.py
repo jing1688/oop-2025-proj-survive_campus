@@ -46,3 +46,4 @@ BUILDING_INFO = {
 NOTO_FONT_PATH  = "NotoSansTC-Regular.otf"
 CAT_IMAGE_PATH  = "pictures/cat.png"
 CAT_SOUND_PATH  = "sounds/Free_Cat_SFX_Meow2.wav"
+GOBLIN_IMAGE_PATH = "pictures/goblin.png"  # 假設有哥布林圖片
