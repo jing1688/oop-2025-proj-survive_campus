@@ -48,7 +48,7 @@ def main():
             if submenu_kind and e.type == KEYDOWN:
                 if submenu_kind == 'cat':
                     if e.key == K_1:
-                        hours_spent += ACTION_HOURS["CAT_TOUCH"] *120
+                        hours_spent += ACTION_HOURS["CAT_TOUCH"] 
                         feedback_text = "他不想讓你摸"
                     elif e.key == K_2:
                         hours_spent += ACTION_HOURS["CAT_FEED"]
