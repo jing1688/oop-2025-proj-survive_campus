@@ -22,7 +22,7 @@ BUILDING_INFO = {
         "effect": lambda p: (
             setattr(p, "fullness", 10),
             setattr(p, "social",   p.social + 1),
-            setattr(p, "sleepiness", p.sleepiness - 1),
+            setattr(p, "health", p.health - 1),
         ),
     },
     "classroom": {
@@ -31,7 +31,7 @@ BUILDING_INFO = {
         "effect": lambda p: (
             setattr(p, "fullness",  p.fullness - 1),
             setattr(p, "grade",     p.grade + 1),
-            setattr(p, "sleepiness", p.sleepiness - 1),
+            setattr(p, "health", p.health - 1),
         ),
     },
     "cat": {

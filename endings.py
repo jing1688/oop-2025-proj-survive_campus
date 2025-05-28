@@ -3,7 +3,7 @@ MAX_INTERACTIONS = 10
 
 EARLY_FAILS = [
     {"key": "餓暈", "condition": lambda p, i: p.fullness <= 0,  "image": None},
-    {"key": "累到虛脫", "condition": lambda p, i: p.sleepiness <= -10, "image": None},
+    {"key": "累到虛脫", "condition": lambda p, i: p.health <= -10, "image": None},
 ]
 
 FINAL_ENDINGS = [

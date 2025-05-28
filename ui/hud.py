@@ -1,6 +1,6 @@
 from constants import *
 def draw_hud(screen, font, player, interactions):
-    text = f"飽足:{player.fullness} 睡眠:{player.sleepiness} 社交:{player.social} 成績:{player.grade} 互動:{interactions}/10"
+    text = f"飽足:{player.fullness} 健康:{player.health} 社交:{player.social} 成績:{player.grade} 互動:{interactions}/10"
     surf = font.render(text, True, (0,0,0))
     screen.blit(surf, (10,10))
 
