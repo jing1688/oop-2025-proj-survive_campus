@@ -68,7 +68,7 @@ def main():
                 elif submenu_kind == 'restaurant':
                     if e.key == K_y:
                         hours_spent += ACTION_HOURS["EAT"]
-                        player.sleepiness -= 1
+                        player.health -= 1
                         player.fullness = 10
                         player.social += 1
                         feedback_text = "你吃得很開心！"
@@ -77,17 +77,17 @@ def main():
                 elif submenu_kind == 'classroom':
                     if e.key == K_1:
                         hours_spent += ACTION_HOURS["STUDY"]
-                        player.sleepiness -= 1
+                        player.health -= 1
                         player.grade += 1
                         feedback_text = "上課"
                     elif e.key == K_2:
                         hours_spent += ACTION_HOURS["EXAM"]
-                        player.sleepiness -= 2
+                        player.health -= 2
                         player.grade += 2
                         feedback_text = "考試"
                     elif e.key == K_3:
                         hours_spent += ACTION_HOURS["SLEEP_CLASS"]
-                        player.sleepiness += 2
+                        player.health += 2
                         feedback_text = "睡著了"
                 submenu_kind = None
                 game_over, ending = check_game_over(player, hours_spent)
