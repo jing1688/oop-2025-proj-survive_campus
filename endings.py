@@ -9,7 +9,7 @@ EARLY_FAILS = [
 FINAL_ENDINGS = [
     {"key": "你線代無力，微積分不精\n物件導向反應遲鈍，微分方程知識鬆散\n沒一個科目像樣！", 
      "condition": lambda p, i: p.grade < 3,
-     "image": "final_project/pictures/1662286848503.jpg"},
+     "image": "pictures/1662286848503.jpg"},
     # {"key": "AAA", "condition": lambda p, i: True, "image": None},   # default
 ]
 
