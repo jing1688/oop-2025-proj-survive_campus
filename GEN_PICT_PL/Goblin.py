@@ -10,6 +10,7 @@ def generate_goblin(
     mouth_color=(139, 69, 19, 255),
     horn=False,
     horn_color=(200, 200, 200, 255)
+    foot_color=(30, 180, 30, 255)  # 小腳顏色
 ):
     """
     生成一隻像素風格的 Goblin。
