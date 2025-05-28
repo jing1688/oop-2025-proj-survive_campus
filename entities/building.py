@@ -27,7 +27,7 @@
 #         color = RESTAURANT_COLOR if self.kind=="restaurant" else CLASSROOM_COLOR
 #         pygame.draw.rect(screen, color, self.rect)
 import pygame
-from constants import BUILDING_SIZE, BUILDING_INFO, CAT_IMAGE_PATH,CAT_SOUND_PATH ,GOBLIN_IMAGE_PATH
+from constants import BUILDING_SIZE, BUILDING_INFO, CAT_IMAGE_PATH,GOBLIN_IMAGE_PATH
 
 # --- 載入、快取圖片 ---
 _cat_surface = None
@@ -40,11 +40,11 @@ def get_cat_surface():
 
 def get_goblin_surface():
     # 這裡可以加入 Goblin 的圖片載入邏輯
-    global _cat_surface
+    global _goblin_surface
     if _cat_surface is None:
-        img = pygame.image.load(CAT_IMAGE_PATH).convert_alpha()
+        img = pygame.image.load(GOBLIN_IMAGE_PATH).convert_alpha()
         _cat_surface = pygame.transform.smoothscale(img, BUILDING_SIZE)
-    return _cat_surface
+    return _goblin_surface
 
 class Building:
     def __init__(self, x, y, kind):
