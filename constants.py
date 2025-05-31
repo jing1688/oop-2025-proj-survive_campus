@@ -24,7 +24,7 @@ BUILDING_INFO = {
         "color": RESTAURANT_COLOR,
         "prompt": "進入餐廳？ (Y/N)",
         "effect": lambda p: (
-            setattr(p, "fullness", 10),
+            setattr(p, "energy", 10),
             setattr(p, "social",   p.social + 1),
             setattr(p, "health", p.health - 1),
         ),
@@ -33,7 +33,7 @@ BUILDING_INFO = {
         "color": CLASSROOM_COLOR,
         "prompt": "進入教室？ (Y/N)",
         "effect": lambda p: (
-            setattr(p, "fullness",  p.fullness - 1),
+            setattr(p, "energy",  p.energy - 1),
             setattr(p, "grade",     p.grade + 1),
             setattr(p, "health", p.health - 1),
         ),

@@ -16,10 +16,11 @@ def get_goblin_surface():
 class Player:
     def __init__(self, x, y):
         self.rect = pygame.Rect(x, y, PLAYER_SIZE, PLAYER_SIZE)
-        self.fullness = 10
+        self.energy = 10
         self.health = 10
         self.social = 0
         self.grade = 0
+        self.money= 4000
 
     def move(self, dx, dy, bounds, obstacles):
         # 移動 + 邊界檢查 + 障礙物碰撞

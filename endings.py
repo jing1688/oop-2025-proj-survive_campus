@@ -16,7 +16,7 @@ def check_game_over(player, hours_spent):
     return False, None
 
 EARLY_FAILS = [
-    {"key": "餓暈", "condition": lambda p, h: p.fullness <= 0,  "image": None},
+    {"key": "餓暈", "condition": lambda p, h: p.energy <= 0,  "image": None},
     {"key": "累到虛脫", "condition": lambda p, h: p.health <= -10, "image": None},
 ]
 

@@ -64,7 +64,7 @@ def main():
                     if e.key == K_y:
                         hours_spent += ACTION_HOURS["EAT"]
                         player.health -= 1
-                        player.fullness = 10
+                        player.energy = 10
                         player.social += 1
                         feedback_text = "你吃得很開心！"
                     else:
