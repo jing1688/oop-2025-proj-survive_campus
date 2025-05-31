@@ -48,7 +48,7 @@ BUILDING_INFO = {
 
 ACTION_HOURS = {
     "CAT_TOUCH":  2,
-    "CAT_FEED":   5,
+    "CAT_FEED":   4,
     "CAT_MEOW":   0.5,
     "CAT_IDLE":   0,      # 不做事
 

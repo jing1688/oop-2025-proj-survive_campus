@@ -22,12 +22,14 @@ def draw_hud(screen: pygame.Surface,
              player,
              hours_spent: float) -> None:
     """在左上角畫一組『月份』Label + 動態值的 HUD。"""
-
+    # 新增：遊戲開跑的「學年月份」（1‥12）
+    START_MONTH    = 9      # 9 = 九月開學
     # ------- 計算目前「第幾月 / 第幾年 (年級)」 -------------------
     # 0-based index：0 → 第 1 月 …  (假設一學年 12 個月可自行拆成季或學期)
     month_idx  = int(hours_spent) // HOURS_PER_MONTH
-    month_in_y = month_idx % 12 + 1          # 1~12
-    year_idx   = month_idx // 12             # 0 → 大一、1 → 大二 ...
+    abs_idx        = (START_MONTH - 1) + month_idx     # 例：首月 → 8
+    month_in_y = abs_idx  % 12 + 1          # 1~12
+    year_idx   = abs_idx  // 12             # 0 → 大一、1 → 大二 ...
     year_idx   = min(year_idx, len(GRADE_NAME) - 1)
     grade_txt  = GRADE_NAME[year_idx]
     
