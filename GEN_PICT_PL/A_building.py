@@ -26,7 +26,7 @@ roof_rect = [8, 16, 42, 20]
 draw.rectangle(roof_rect, fill=(139, 69, 19))  # Dark Brown 屋頂
 
 # 放大像素風格（最近鄰插值）
-pixel_scale = 5
+pixel_scale = 3
 big_size = (canvas_size[0] * pixel_scale, canvas_size[1] * pixel_scale)
 big = img.resize(big_size, resample=Image.NEAREST)
 
