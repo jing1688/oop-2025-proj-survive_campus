@@ -19,8 +19,9 @@ class Player:
         self.energy = 10
         self.health = 10
         self.social = 0
-        self.grade = 0
+        self.academics = 0
         self.money= 4000
+        self.explore = 0
 
     def move(self, dx, dy, bounds, obstacles):
         # 移動 + 邊界檢查 + 障礙物碰撞

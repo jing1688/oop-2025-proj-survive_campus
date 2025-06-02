@@ -73,12 +73,12 @@ def main():
                     if e.key == K_1:
                         hours_spent += ACTION_HOURS["STUDY"]
                         player.health -= 1
-                        player.grade += 1
+                        player.academics += 1
                         feedback_text = "上課"
                     elif e.key == K_2:
                         hours_spent += ACTION_HOURS["EXAM"]
                         player.health -= 2
-                        player.grade += 2
+                        player.academics += 2
                         feedback_text = "考試"
                     elif e.key == K_3:
                         hours_spent += ACTION_HOURS["SLEEP_CLASS"]
@@ -134,7 +134,7 @@ def main():
 # 結局畫面
         # 1) 準備文字和字型
     msg1     = ending['key']
-    msg2     = f"最終 社交:{player.social}  成績:{player.grade}"
+    msg2     = f"最終 社交:{player.social}  成績:{player.academics}"
     end_font = get_font(24)
 
     # 2) 清屏並由 10% 處開始繪製（自動換行／手動換行）
