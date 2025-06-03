@@ -1,74 +1,75 @@
-# import pygame
-# from constants import BUILDING_SIZE, RESTAURANT_COLOR, CLASSROOM_COLOR
+# entities/building.py
 
-# class Building:
-#     def __init__(self, x, y, kind):
-#         self.rect = pygame.Rect(x, y, *BUILDING_SIZE)
-#         self.detect_rect = self.rect.inflate(10, 10)
-#         self.kind = kind  # "restaurant" or "classroom"
-
-#     def interact(self, player):
-#         player.sleepiness -= 1
-
-#         if self.kind == "restaurant":
-#             player.fullness = 10
-#             player.social  += 1
-#         elif self.kind == "classroom":
-#             player.fullness -= 1
-#             player.grade    += 1
-#         elif self.kind == "cat":                       # ★ 新增
-#             pass                     
-
-
-
-#         # 其他屬性不動
-
-#     def draw(self, screen):
-#         color = RESTAURANT_COLOR if self.kind=="restaurant" else CLASSROOM_COLOR
-#         pygame.draw.rect(screen, color, self.rect)
 import pygame
-from constants import BUILDING_SIZE, BUILDING_INFO, CAT_IMAGE_PATH,CAT_SOUND_PATH ,GOBLIN_IMAGE_PATH
-A_Building_Path= "pictures/A_building.png"
-# --- 載入、快取圖片 ---
+from constants import BUILDING_SIZE, BUILDING_INFO, CAT_IMAGE_PATH, A_Building_Path
+
+# --------------------------------------------
+# 全域快取：貓咪圖片
 _cat_surface = None
+
 def get_cat_surface():
     global _cat_surface
     if _cat_surface is None:
-        img = pygame.image.load(CAT_IMAGE_PATH).convert_alpha()
-        _cat_surface = pygame.transform.smoothscale(img, BUILDING_SIZE)
+        temp = pygame.image.load(CAT_IMAGE_PATH).convert_alpha()
+        # 如果你想要 50×50 大小，可以改成 (50, 50)
+        # 但通常建築大小跟 BUILDING_SIZE 一致較好：
+        _cat_surface = pygame.transform.smoothscale(temp, BUILDING_SIZE)
     return _cat_surface
 
-def get_goblin_surface():
-    # 這裡可以加入 Goblin 的圖片載入邏輯
-    global _cat_surface
-    if _cat_surface is None:
-        img = pygame.image.load(CAT_IMAGE_PATH).convert_alpha()
-        _cat_surface = pygame.transform.smoothscale(img, BUILDING_SIZE)
-    return _cat_surface
+# 全域快取：其他自訂建築圖 (A_Building_Path)
+_building_surface = None
 
+def get_build_surface():
+    global _building_surface
+    if _building_surface is None:
+        temp = pygame.image.load(A_Building_Path).convert_alpha()
+        _building_surface = pygame.transform.smoothscale(temp, BUILDING_SIZE)
+    return _building_surface
 
+# --------------------------------------------
 class Building:
     def __init__(self, x, y, kind):
-        self.kind = kind  # "restaurant", "classroom" 或 "cat"
-        self.rect = pygame.Rect(x, y, *BUILDING_SIZE)
+        """
+        x, y = 世界座標 (world_x, world_y)
+        kind: "cat" / "restaurant" / "classroom" / 其他
+        """
+        self.kind        = kind
+        self.rect        = pygame.Rect(x, y, *BUILDING_SIZE)
         self.detect_rect = self.rect.inflate(10, 10)
 
     def interact(self, player):
-        # 通用：每次互動都消耗睡眠度
+        """
+        每次互動扣 1 點體力；若為 cat，回傳 "meow" 事件。
+        否則執行 BUILDING_INFO[kind]["effect"] 的效果。
+        """
         player.health -= 1
 
         if self.kind == "cat":
-            # 只回傳事件，由 main.py 控制播放音效 & 不改其他屬性
             return "meow"
-        # 其它建築使用 BUILDING_INFO 表格裡的 effect
         BUILDING_INFO[self.kind]["effect"](player)
         return None
 
-    def draw(self, screen):
+    def draw(self, screen, offset):
+        """
+        offset = (cam_x, cam_y)，表示鏡頭偏移量。
+        world_x - cam_x  = 螢幕上的 x
+        world_y - cam_y  = 螢幕上的 y
+        """
+        cam_x, cam_y = offset
+        draw_x = self.rect.x - cam_x
+        draw_y = self.rect.y - cam_y
+
         if self.kind == "cat":
-            # 圖片繪製
-            screen.blit(get_cat_surface(), self.rect)
+            surf = get_cat_surface()
+            screen.blit(surf, (draw_x, draw_y))
         else:
-            # 色塊繪製
-            color = BUILDING_INFO[self.kind]["color"]
-            pygame.draw.rect(screen, color, self.rect)
+            surf = get_build_surface()
+            screen.blit(surf, (draw_x, draw_y))
+        # 若未來要依 kind 畫不同圖，請在這裡改成：
+        # if self.kind == "restaurant":
+        #     surf = get_restaurant_surface()
+        # elif self.kind == "classroom":
+        #     surf = get_classroom_surface()
+        # else:
+        #     surf = get_build_surface()
+        # screen.blit(surf, (draw_x, draw_y))

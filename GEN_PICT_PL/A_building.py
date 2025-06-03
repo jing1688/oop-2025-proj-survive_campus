@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw
 
 # 設定小畫布大小（像素風格）
-canvas_size = (50, 50)
+canvas_size = (65, 65)
 # 建立淺藍色天空背景
 img = Image.new('RGBA', (60, 60), (0, 0, 0, 0))
 
