@@ -90,6 +90,17 @@ def main():
                 if game_over:
                     # 跳出主迴圈
                     break
+                
+                # ====== 檢查：是否跨過新的月份 (每40h)？ ======
+                # 現在我們用整數方式計算：month_idx = int(hours_spent)//HOURS_PER_MONTH
+                current_month_idx = int(hours_spent) // HOURS_PER_MONTH
+                # 如果 current_month_idx != last_month_idx，就代表「新的一個月剛開始」
+                if current_month_idx != last_month_idx:
+                    # 觸發月初重置：體力回滿、金錢加4000
+                    player.health = player.health_max     # 體力歸 100
+                    player.money += 4000                  # 月初再+4000
+                    # 更新 last_month_idx
+                    last_month_idx = current_month_idx
 
             if submenu_kind is None and e.type == KEYDOWN:
                 near = next((b for b in buildings if player.rect.colliderect(b.detect_rect)), None)
