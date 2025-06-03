@@ -15,7 +15,7 @@ PLAYER_COLOR     = (0,   128, 255)
 RESTAURANT_COLOR = (255, 165,   0)
 CLASSROOM_COLOR  = (128,   0, 128)
 CAT_COLOR        = (255, 180,   0)
-
+GYM_COLOR      = (100, 100, 110) 
 # 時間相關
 HOURS_PER_MONTH = 40
 TOTAL_MONTHS    = 4
@@ -34,6 +34,15 @@ BUILDING_INFO = {
             setattr(p, "social",   p.social + 1),
             setattr(p, "health",   p.health - 1),
         ),
+    },
+    "gym": {
+    "color": GYM_COLOR,
+    "prompt": "要運動嗎？ (Y/N)",
+    # 運動：Energy -15、Health +3
+    "effect": lambda p: (
+        setattr(p, "energy",   p.energy - 15),
+        setattr(p, "health",   min(p.health_max, p.health + 3))
+    ),
     },
     "classroom": {
         "color": CLASSROOM_COLOR,
@@ -69,3 +78,4 @@ CAT_IMAGE_PATH    = "pictures/cat.png"
 CAT_SOUND_PATH    = "sounds/Free_Cat_SFX_Meow2.wav"
 GOBLIN_IMAGE_PATH = "pictures/goblin.png"
 A_Building_Path   = "pictures/A_building.png"
+GYM_IMAGE_PATH    = "pictures/gym_pixel.png"

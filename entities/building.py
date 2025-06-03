@@ -1,8 +1,7 @@
 # entities/building.py
 
 import pygame
-from constants import BUILDING_SIZE, BUILDING_INFO, CAT_IMAGE_PATH, A_Building_Path
-
+from constants import *
 # --------------------------------------------
 # 全域快取：貓咪圖片
 _cat_surface = None
@@ -25,7 +24,9 @@ def get_build_surface():
         temp = pygame.image.load(A_Building_Path).convert_alpha()
         _building_surface = pygame.transform.smoothscale(temp, BUILDING_SIZE)
     return _building_surface
-
+def get_gym_surface():
+    surf = pygame.image.load(GYM_IMAGE_PATH).convert_alpha()
+    return pygame.transform.smoothscale(surf, BUILDING_SIZE) 
 # --------------------------------------------
 class Building:
     def __init__(self, x, y, kind):
@@ -62,12 +63,13 @@ class Building:
         if self.kind == "cat":
             surf = get_cat_surface()
             screen.blit(surf, (draw_x, draw_y))
+        elif self.kind == "gym":
+            surf = get_gym_surface()
+            screen.blit(surf, (draw_x, draw_y))
         else:
             surf = get_build_surface()
             screen.blit(surf, (draw_x, draw_y))
-        # 若未來要依 kind 畫不同圖，請在這裡改成：
-        # if self.kind == "restaurant":
-        #     surf = get_restaurant_surface()
+        #若未來要依 kind 畫不同圖，請在這裡改成：
         # elif self.kind == "classroom":
         #     surf = get_classroom_surface()
         # else:

@@ -25,7 +25,7 @@ class Player:
         self.health       = ENERGY_MAX
         self.health_max   = ENERGY_MAX
         self.money        = 4000
-        self.energy       = 10
+        self.energy       = 100
         self.social       = 0
         self.academics    = 0
 

@@ -145,6 +145,14 @@ def main():
                         hours_spent += ACTION_HOURS["SLEEP_CLASS"]
                         player.health += 2
                         feedback_text = "睡著了"
+                elif submenu_kind == 'gym':
+                    if e.key == K_y:
+                        hours_spent += 3           # 時間 +3h
+                        player.energy -= 15        # energy -15
+                        player.health = min(player.health_max, player.health + 3)
+                        feedback_text = "你大汗淋漓，感覺更健康！"
+                    else:
+                        feedback_text = "你決定先離開"
                 submenu_kind = None
 
                 # --------- 跨月檢查 ---------
