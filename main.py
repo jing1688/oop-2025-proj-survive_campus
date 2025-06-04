@@ -246,7 +246,7 @@ def main():
     # 結局畫面
     # --------------------------------------------------
     msg1     = ending['key']
-    msg2     = f"最終 社교:{player.social}  成績:{player.academics}"
+    msg2     = f"最終 社交:{player.social}  成績:{player.academics}"
     end_font = get_font(24)
 
     screen.fill((200, 200, 200))
