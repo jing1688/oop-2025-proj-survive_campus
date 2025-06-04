@@ -58,6 +58,15 @@ BUILDING_INFO = {
         "prompt": "要摸摸可愛的貓咪嗎？ (Y/N)",
         "effect": lambda p: None,
     },
+    "library": {
+        # "color": (0, 128, 0),  # 圖書館顏色
+        "prompt": "要進入圖書館嗎？ (Y/N)",
+        "effect": lambda p: (
+            setattr(p, "energy",   p.energy - 1),
+            setattr(p, "academics",p.academics + 2),
+            setattr(p, "health",   p.health - 1),
+        ),
+    },
 }
 
 # 各種行動所需小時數
@@ -79,3 +88,4 @@ CAT_SOUND_PATH    = "sounds/Free_Cat_SFX_Meow2.wav"
 GOBLIN_IMAGE_PATH = "pictures/goblin.png"
 A_Building_Path   = "pictures/A_building.png"
 GYM_IMAGE_PATH    = "pictures/gym_pixel.png"
+LIBRARY_IMAGE_PATH = "pictures/library.gif"

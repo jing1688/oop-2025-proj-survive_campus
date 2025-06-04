@@ -26,6 +26,10 @@ def get_build_surface():
     return _building_surface
 def get_gym_surface():
     surf = pygame.image.load(GYM_IMAGE_PATH).convert_alpha()
+    return pygame.transform.smoothscale(surf, BUILDING_SIZE)
+
+def get_library_surface():
+    surf = pygame.image.load(LIBRARY_IMAGE_PATH).convert_alpha()
     return pygame.transform.smoothscale(surf, BUILDING_SIZE) 
 # --------------------------------------------
 class Building:
@@ -65,6 +69,9 @@ class Building:
             screen.blit(surf, (draw_x, draw_y))
         elif self.kind == "gym":
             surf = get_gym_surface()
+            screen.blit(surf, (draw_x, draw_y))
+        elif self.kind == "library":
+            surf = get_library_surface()
             screen.blit(surf, (draw_x, draw_y))
         else:
             surf = get_build_surface()
