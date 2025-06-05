@@ -155,10 +155,13 @@ def main():
                         feedback_text = "你決定先離開"
                 elif submenu_kind == 'library':
                     if e.key == K_y:
-                        hours_spent += 3           # 時間 +3h
-                        player.energy -= 15        # energy -15
-                        player.health = min(player.health_max, player.health + 3)
-                        feedback_text = "你大汗淋漓，感覺更健康！"
+                        hours_spent += 5           # 時間 +3h
+                        player.energy -= 25        # energy -15
+                        player.academics += 4
+                        if hours_spent >= 60 and hours_spent<=80:
+                            feedback_text = "你發現要被當了。你決定一個晚上，一隻筆，一台平板，創造奇蹟"
+                        else:
+                            feedback_text = "即便現在不是期中考周，你的人生仍只剩圖書館"
                     else:
                         feedback_text = "你決定先離開"
                 submenu_kind = None
