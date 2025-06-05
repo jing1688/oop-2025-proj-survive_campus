@@ -101,6 +101,8 @@ ACTION_HOURS = {
     "CLUB_JOIN":   5,
     "CLUB_PEER":   4,
     "LIBRARY":     5,
+    "WORK":        8,
+    "MCDONALD":    2,
 }
 
 # 路徑
@@ -113,3 +115,4 @@ GYM_IMAGE_PATH    = "pictures/gym_pixel.png"
 LIBRARY_IMAGE_PATH = "pictures/library.gif"
 CLUB_IMAGE_PATH   = "pictures/club.png"
 McDonald_IMAGE_PATH = "pictures/mcd_pixel.png"
+HOUSE_IMAGE_PATH = "pictures/house.png"

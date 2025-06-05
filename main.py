@@ -93,6 +93,7 @@ def main():
     classroom_choices = [("1","讀書"),("2","考試"),("3","睡覺")]
     cat_choices       = [("1","摸牠"),("2","餵牠"),("3","喵喵喵"),("4","不做事")]
     club_choices       = [("1","參加社團"),("2","同儕聚會"),("3","離開")]
+    MCDonald_choices = [("1", "打工"), ("2", "吃飯"), ("3", "離開")]
     # 攝影機初始位置
     cam_x = 0
     cam_y = 0
@@ -180,9 +181,19 @@ def main():
                     submenu_kind = None
                 elif submenu_kind == 'McDonald':
                     if e.key == K_1:
-                        pass
+                        hours_spent += ACTION_HOURS["WORK"]
+                        player.money += 800
+                        player.energy -= 30
+                        player.finance += 2
+                        player.academics -= 1
+                        feedback_text = "再吵把你大薯鏟成小薯"
                     elif e.key == K_2:
-                        pass
+                        hours_spent += ACTION_HOURS["MCDONALD"]
+                        player.energy += 25
+                        player.money -= 300
+                        feedback_text = "你吃了麥當勞，感覺BMI上升了"
+                    elif e.key == K_3:
+                        feedback_text = "你決定先離開麥當勞"
 
                 submenu_kind = None
 
@@ -257,6 +268,8 @@ def main():
             draw_choices(screen, font_small, classroom_choices, topleft=(WIDTH//2-100, HEIGHT//2-80))
         elif submenu_kind == 'club':
             draw_choices(screen, font_small, club_choices, topleft=(WIDTH//2-80, HEIGHT//2-80))
+        elif submenu_kind == 'McDonald':
+            draw_choices(screen, font_small, MCDonald_choices, topleft=(WIDTH//2-80, HEIGHT//2-80))
         elif near:
             draw_prompt(screen, font_big, BUILDING_INFO[near.kind]['prompt'])
 

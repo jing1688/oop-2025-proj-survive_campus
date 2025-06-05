@@ -29,6 +29,7 @@ class Player:
         self.social       = 0
         self.academics    = 0
         self.explore      = 0
+        self.finance      = 0
         self.club = Club(self)
     def move(self, dx, dy, bounds, obstacles):
         """
