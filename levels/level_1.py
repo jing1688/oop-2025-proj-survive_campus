@@ -14,4 +14,6 @@ def build_level(width: int, height: int) -> list[Building]:
         Building(80, height - 200, "cat"),  # 貓咪
         Building(width - 400, 500, "gym"),   # 運動場
         Building(700, 200, "library"),  # 圖書館
+        Building(400, 700, "club"),    # 社團
+        Building(1000, 1200, "McDonald"),  # 另一個餐廳
     ]

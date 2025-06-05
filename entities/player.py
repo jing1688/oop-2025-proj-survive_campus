@@ -1,5 +1,5 @@
 # entities/player.py
-
+from acitivies.club import Club
 import pygame
 from constants import PLAYER_SIZE, GOBLIN_IMAGE_PATH, ENERGY_MAX 
 
@@ -24,11 +24,12 @@ class Player:
         self.rect         = pygame.Rect(x, y, PLAYER_SIZE, PLAYER_SIZE)
         self.health       = ENERGY_MAX
         self.health_max   = ENERGY_MAX
-        self.money        = 4000
+        self.money        = 0
         self.energy       = 100
         self.social       = 0
         self.academics    = 0
-
+        self.explore      = 0
+        self.club = Club(self)
     def move(self, dx, dy, bounds, obstacles):
         """
         dx, dy = 世界座標增量（速度 * 時間）

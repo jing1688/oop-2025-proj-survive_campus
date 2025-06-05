@@ -55,17 +55,35 @@ BUILDING_INFO = {
     },
     "cat": {
         "color": CAT_COLOR,
-        "prompt": "要摸摸可愛的貓咪嗎？ (Y/N)",
+        "prompt": "咪咪？ (Y/N)",
         "effect": lambda p: None,
     },
     "library": {
         # "color": (0, 128, 0),  # 圖書館顏色
         "prompt": "要進入圖書館嗎？ (Y/N)",
         "effect": lambda p: (
-            setattr(p, "energy",   p.energy - 1),
-            setattr(p, "academics",p.academics + 2),
-            setattr(p, "health",   p.health - 1),
+            setattr(p, "energy",   p.energy - 25),
+            setattr(p, "academics",p.academics + 4),
         ),
+
+    },
+    "club": {
+        "color": (255, 0, 255),  # 社團顏色
+        "prompt": "要和別人社交嗎？ (Y/N)",
+        # "effect": lambda p: (
+        #     setattr(p, "energy",   p.energy - 1),
+        #     setattr(p, "social",   p.social + 2),
+        #     setattr(p, "health",   p.health - 1),
+        # ),
+    },
+    "McDonald": {
+        "color": (255, 0, 0),  # 麥當勞顏色
+        "prompt": "要去麥當勞嗎？ (Y/N)",
+        # "effect": lambda p: (
+        #     setattr(p, "energy",   p.energy + 10),
+        #     setattr(p, "social",   p.social + 1),
+        #     setattr(p, "health",   p.health - 1),
+        # ),
     },
 }
 
@@ -79,6 +97,10 @@ ACTION_HOURS = {
     "STUDY":       7,
     "EXAM":        3,
     "SLEEP_CLASS": 3,
+    "GYM" :        3,
+    "CLUB_JOIN":   5,
+    "CLUB_PEER":   4,
+    "LIBRARY":     5,
 }
 
 # 路徑
@@ -89,3 +111,5 @@ GOBLIN_IMAGE_PATH = "pictures/goblin.png"
 A_Building_Path   = "pictures/A_building.png"
 GYM_IMAGE_PATH    = "pictures/gym_pixel.png"
 LIBRARY_IMAGE_PATH = "pictures/library.gif"
+CLUB_IMAGE_PATH   = "pictures/club.png"
+McDonald_IMAGE_PATH = "pictures/mcd_pixel.png"

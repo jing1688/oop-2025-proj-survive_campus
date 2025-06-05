@@ -10,6 +10,7 @@ from ui.hud import draw_hud
 from ui.prompt import draw_prompt, draw_end, draw_choices
 from endings import check_game_over
 from levels import LEVELS
+from acitivies.club import Club
 
 PLAYER_SPEED = 3
 
@@ -91,7 +92,7 @@ def main():
 
     classroom_choices = [("1","讀書"),("2","考試"),("3","睡覺")]
     cat_choices       = [("1","摸牠"),("2","餵牠"),("3","喵喵喵"),("4","不做事")]
-
+    club_choices       = [("1","參加社團"),("2","同儕聚會"),("3","離開")]
     # 攝影機初始位置
     cam_x = 0
     cam_y = 0
@@ -147,15 +148,15 @@ def main():
                         feedback_text = "睡著了"
                 elif submenu_kind == 'gym':
                     if e.key == K_y:
-                        hours_spent += 3           # 時間 +3h
-                        player.energy -= 15        # energy -15
-                        player.health = min(player.health_max, player.health + 3)
+                        hours_spent += ACTION_HOURS["GYM"]           # 時間 +3h
+                        BUILDING_INFO['gym']['effect'](player)        # energy -15
+                        # player.health = min(player.health_max, player.health + 3)
                         feedback_text = "你大汗淋漓，感覺更健康！"
                     else:
                         feedback_text = "你決定先離開"
                 elif submenu_kind == 'library':
                     if e.key == K_y:
-                        hours_spent += 5           # 時間 +3h
+                        hours_spent += ACTION_HOURS["LIBRARY"]             # 時間 +3h
                         player.energy -= 25        # energy -15
                         player.academics += 4
                         if hours_spent >= 60 and hours_spent<=80:
@@ -164,6 +165,25 @@ def main():
                             feedback_text = "即便現在不是期中考周，你的人生仍只剩圖書館"
                     else:
                         feedback_text = "你決定先離開"
+                elif submenu_kind == 'club':
+                    if e.key == K_1:  # 按 1 = 參加社團
+                        hours_spent += ACTION_HOURS["CLUB_JOIN"]
+                        success, msg = player.club.join_club()
+                        feedback_text = msg
+                    elif e.key == K_2:  # 按 2 = 同儕聚會
+                        hours_spent += ACTION_HOURS["CLUB_PEER"]
+                        success, msg = player.club.peer_gathering()
+                        feedback_text = msg
+                    elif e.key == K_3:  # 按 3 = 離開子選單
+                        feedback_text = "你決定先離開社團中心。"
+                    # 無論按 1/2/3，都離開子選單
+                    submenu_kind = None
+                elif submenu_kind == 'McDonald':
+                    if e.key == K_1:
+                        pass
+                    elif e.key == K_2:
+                        pass
+
                 submenu_kind = None
 
                 # --------- 跨月檢查 ---------
@@ -235,6 +255,8 @@ def main():
             draw_prompt(screen, font_big, "你要吃東西嗎？ (Y/N)")
         elif submenu_kind == 'classroom':
             draw_choices(screen, font_small, classroom_choices, topleft=(WIDTH//2-100, HEIGHT//2-80))
+        elif submenu_kind == 'club':
+            draw_choices(screen, font_small, club_choices, topleft=(WIDTH//2-80, HEIGHT//2-80))
         elif near:
             draw_prompt(screen, font_big, BUILDING_INFO[near.kind]['prompt'])
 

@@ -31,6 +31,16 @@ def get_gym_surface():
 def get_library_surface():
     surf = pygame.image.load(LIBRARY_IMAGE_PATH).convert_alpha()
     return pygame.transform.smoothscale(surf, BUILDING_SIZE) 
+
+def get_club_surface():
+    surf = pygame.image.load(CLUB_IMAGE_PATH).convert_alpha()
+    return pygame.transform.smoothscale(surf, BUILDING_SIZE)
+
+def get_McDonald_surface():
+    surf = pygame.image.load(McDonald_IMAGE_PATH).convert_alpha()
+    # 假設沒有餐廳圖片，返回一個空的 Surface
+    return pygame.transform.smoothscale(surf, BUILDING_SIZE)
+
 # --------------------------------------------
 class Building:
     def __init__(self, x, y, kind):
@@ -73,9 +83,19 @@ class Building:
         elif self.kind == "library":
             surf = get_library_surface()
             screen.blit(surf, (draw_x, draw_y))
+        elif self.kind == "club":
+            surf = get_club_surface()
+            screen.blit(surf, (draw_x, draw_y))
+        elif self.kind == "McDonald":
+            # 如果有餐廳圖，請在這裡加載並繪製
+            # surf = get_restaurant_surface()
+            # screen.blit(surf, (draw_x, draw_y))
+            surf = get_McDonald_surface()
+            screen.blit(surf, (draw_x, draw_y))
         else:
             surf = get_build_surface()
             screen.blit(surf, (draw_x, draw_y))
+        
         #若未來要依 kind 畫不同圖，請在這裡改成：
         # elif self.kind == "classroom":
         #     surf = get_classroom_surface()
