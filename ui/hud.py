@@ -27,8 +27,8 @@ HEALTH_BOX_GAP                  = 5
 HEALTH_MARGIN_BOTTOM            = 10
 
 ENERGY_LABEL_W, ENERGY_LABEL_H = 80, 30
-BLOCK_SIZE      = 16                 # 能量小方塊邊長
-BLOCK_GAP       = 2
+BLOCK_SIZE      = 22                 # 能量小方塊邊長
+BLOCK_GAP       = 3
 ENERGY_MARGIN_B = 10
 
 # 中文年級名稱 (可自行擴充到大二/大三……)
