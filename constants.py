@@ -85,6 +85,16 @@ BUILDING_INFO = {
         #     setattr(p, "health",   p.health - 1),
         # ),
     },
+    "house": {
+        "color": (200, 200, 200),  # 房子顏色
+        "prompt": "要回家嗎？ (Y/N)",
+        # "effect": lambda p: (
+        #     setattr(p, "energy",   p.energy + 30),
+        #     setattr(p, "health",   min(p.health_max, p.health + 5)),
+        #     setattr(p, "social",   p.social - 1),
+        # ),
+    },
+
 }
 
 # 各種行動所需小時數
@@ -103,6 +113,8 @@ ACTION_HOURS = {
     "LIBRARY":     5,
     "WORK":        8,
     "MCDONALD":    2,
+    "PLAY_GAME":    4,
+    "PROJECT":      8,
 }
 
 # 路徑
@@ -116,3 +128,4 @@ LIBRARY_IMAGE_PATH = "pictures/library.gif"
 CLUB_IMAGE_PATH   = "pictures/club.png"
 McDonald_IMAGE_PATH = "pictures/mcd_pixel.png"
 HOUSE_IMAGE_PATH = "pictures/house.png"
+DOOR_IMAGE_PATH = "pictures/door.png"

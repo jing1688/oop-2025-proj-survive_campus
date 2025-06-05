@@ -43,6 +43,10 @@ def get_McDonald_surface():
 def get_house_surface():
     surf = pygame.image.load(HOUSE_IMAGE_PATH).convert_alpha()
     return pygame.transform.smoothscale(surf, BUILDING_SIZE)
+
+def get_door_surface():
+    surf = pygame.image.load(DOOR_IMAGE_PATH).convert_alpha()
+    return pygame.transform.smoothscale(surf, BUILDING_SIZE)
 # --------------------------------------------
 class Building:
     def __init__(self, x, y, kind):
@@ -93,6 +97,12 @@ class Building:
             # surf = get_restaurant_surface()
             # screen.blit(surf, (draw_x, draw_y))
             surf = get_McDonald_surface()
+            screen.blit(surf, (draw_x, draw_y))
+        elif self.kind == "house":
+            surf = get_house_surface()
+            screen.blit(surf, (draw_x, draw_y))
+        elif self.kind == "door":
+            surf = get_door_surface()
             screen.blit(surf, (draw_x, draw_y))
         else:
             surf = get_build_surface()

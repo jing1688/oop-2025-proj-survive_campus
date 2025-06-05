@@ -94,6 +94,7 @@ def main():
     cat_choices       = [("1","摸牠"),("2","餵牠"),("3","喵喵喵"),("4","不做事")]
     club_choices       = [("1","參加社團"),("2","同儕聚會"),("3","離開")]
     MCDonald_choices = [("1", "打工"), ("2", "吃飯"), ("3", "離開")]
+    house_choices = [("1", "遊戲"), ("2", "熬夜"), ("3", "離開")]
     # 攝影機初始位置
     cam_x = 0
     cam_y = 0
@@ -194,6 +195,32 @@ def main():
                         feedback_text = "你吃了麥當勞，感覺BMI上升了"
                     elif e.key == K_3:
                         feedback_text = "你決定先離開麥當勞"
+                elif submenu_kind == 'house':
+                    if e.key == K_1:
+                        hours_spent += ACTION_HOURS["PLAY_GAME"]
+                        player.energy -=10 
+                        player.academics -= 1
+                        player.social += 1
+                        feedback_text = "你讀書捲不贏別人，玩遊戲還菜"
+                    elif e.key == K_2:
+                        hours_spent += ACTION_HOURS["PROJECT"]
+                        player.energy -=30 
+                        player.academics += 4
+                        player.health -=4
+                        feedback_text = "你熬夜趕專案，突然覺得這輩子也就這樣了"
+                    elif e.key == K_3:
+                        feedback_text = "你決定先離開家"
+                elif submenu_kind == 'door':
+                    if e.key == K_y:
+                        hours_spent += ACTION_HOURS["DOOR"]
+                        player.energy -= 20
+                        player.money -= 1000
+                        player.social += 2
+                        player.health += 2
+                        player.explore += 1
+                        feedback_text = "你走出門，感覺世界都變了"
+                    else:
+                        feedback_text = "你不想離開學校"
 
                 submenu_kind = None
 
@@ -270,6 +297,8 @@ def main():
             draw_choices(screen, font_small, club_choices, topleft=(WIDTH//2-80, HEIGHT//2-80))
         elif submenu_kind == 'McDonald':
             draw_choices(screen, font_small, MCDonald_choices, topleft=(WIDTH//2-80, HEIGHT//2-80))
+        elif submenu_kind == 'house':
+            draw_choices(screen, font_small, house_choices, topleft=(WIDTH//2-80, HEIGHT//2-80))
         elif near:
             draw_prompt(screen, font_big, BUILDING_INFO[near.kind]['prompt'])
 
