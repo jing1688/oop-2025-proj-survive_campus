@@ -212,7 +212,7 @@ def main():
                         feedback_text = "你決定先離開家"
                 elif submenu_kind == 'door':
                     if e.key == K_y:
-                        hours_spent += ACTION_HOURS["DOOR"]
+                        hours_spent += ACTION_HOURS["GO_OUT"]
                         player.energy -= 20
                         player.money -= 1000
                         player.social += 2

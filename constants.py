@@ -94,6 +94,14 @@ BUILDING_INFO = {
         #     setattr(p, "social",   p.social - 1),
         # ),
     },
+    "door": {
+        "color": (150, 75, 0),  # 門的顏色
+        "prompt": "要出去玩嗎？ (Y/N)",
+        # "effect": lambda p: (
+        #     setattr(p, "energy",   p.energy - 5),
+        #     setattr(p, "health",   p.health - 2),
+        # ),
+    },
 
 }
 
@@ -115,6 +123,8 @@ ACTION_HOURS = {
     "MCDONALD":    2,
     "PLAY_GAME":    4,
     "PROJECT":      8,
+    "GO_OUT":       6,
+
 }
 
 # 路徑
