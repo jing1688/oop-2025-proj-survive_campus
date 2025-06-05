@@ -91,10 +91,10 @@ def main():
     last_month_idx = -1
 
     classroom_choices = [("1","讀書"),("2","考試"),("3","睡覺")]
-    cat_choices       = [("1","摸牠"),("2","餵牠"),("3","喵喵喵"),("4","不做事")]
+    cat_choices       = [("1","摸牠"),("2","餵牠"),("3","喵喵喵"),("4","擔任志工救助貓貓"),("5","不做事")]
     club_choices       = [("1","參加社團"),("2","同儕聚會"),("3","離開")]
     MCDonald_choices = [("1", "打工"), ("2", "吃飯"), ("3", "離開")]
-    house_choices = [("1", "遊戲"), ("2", "熬夜"), ("3", "離開")]
+    house_choices = [("1", "遊戲"), ("2", "熬夜"),("3","睡覺"), ("4", "離開")]
     # 攝影機初始位置
     cam_x = 0
     cam_y = 0
@@ -122,14 +122,22 @@ def main():
                         feedback_text = "喵？"
                         CAT_SOUND.play()
                     elif e.key == K_4:
+                        hours_spent += ACTION_HOURS["CAT_VOLUNTEER"]
+                        player.energy -= 25
+                        player.social += 5
+                        player.explore += 2
+                        player.academics += 1
+                        feedback_text = "你決定幫助牠"
+                    elif e.key == K_5:
                         hours_spent += ACTION_HOURS["CAT_IDLE"]
                         feedback_text = ""
                 elif submenu_kind == 'restaurant':
                     if e.key == K_y:
                         hours_spent += ACTION_HOURS["EAT"]
-                        player.health -= 1
-                        player.energy = 10
+                        player.energy += 10
                         player.social += 1
+                        player.health += 1
+                        player.money -= 200
                         feedback_text = "你吃得很開心！"
                     else:
                         feedback_text = "你決定先離開"
@@ -147,6 +155,7 @@ def main():
                     elif e.key == K_3:
                         hours_spent += ACTION_HOURS["SLEEP_CLASS"]
                         player.health += 2
+                        player.energy += 5
                         feedback_text = "睡著了"
                 elif submenu_kind == 'gym':
                     if e.key == K_y:
@@ -192,7 +201,7 @@ def main():
                         hours_spent += ACTION_HOURS["MCDONALD"]
                         player.energy += 25
                         player.money -= 300
-                        feedback_text = "你吃了麥當勞，感覺BMI上升了"
+                        feedback_text = "你吃了麥當勞補充一點能量，感覺BMI上升了"
                     elif e.key == K_3:
                         feedback_text = "你決定先離開麥當勞"
                 elif submenu_kind == 'house':
@@ -209,6 +218,12 @@ def main():
                         player.health -=4
                         feedback_text = "你熬夜趕專案，突然覺得這輩子也就這樣了"
                     elif e.key == K_3:
+                        hours_spent += ACTION_HOURS["SLEEP_HOME"]
+                        player.energy += 30
+                        player.health += 5
+                        player.social -= 1
+                        feedback_text = "你回家休息，感覺好多了"
+                    elif e.key == K_4:
                         feedback_text = "你決定先離開家"
                 elif submenu_kind == 'door':
                     if e.key == K_y:
@@ -223,12 +238,18 @@ def main():
                         feedback_text = "你不想離開學校"
 
                 submenu_kind = None
-
+                
+                # ────────────── 能量過低警告 ──────────────
+                if not game_over and -10 < player.energy <= 0:
+                    if feedback_timer == 0:            # 避免每幀都覆寫
+                        feedback_text  = "能量過低！建議回宿舍休息或到餐廳吃飯"
+                        feedback_timer = FPS * 2       # 顯示 2 秒（自己決定長度）
+                # ─────────────────────────────────────────
                 # --------- 跨月檢查 ---------
                 current_month_idx = int(hours_spent) // HOURS_PER_MONTH
                 if current_month_idx != last_month_idx:
                     player.health = player.health_max
-                    player.money  += 4000
+                    player.money  += 1000
                     last_month_idx = current_month_idx
 
                 game_over, ending = check_game_over(player, hours_spent)

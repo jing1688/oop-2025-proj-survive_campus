@@ -1,7 +1,7 @@
 # ui/hud.py
 
 import pygame
-from constants import HOURS_PER_MONTH, MAX_HOURS
+from constants import HOURS_PER_MONTH, MAX_HOURS,ENERGY_BLUE, ENERGY_RED,HEIGHT
 
 # --- 外觀參數 ----------------------------------------------------
 LABEL_BG     = (58, 110, 200)   # 所有藍底
@@ -26,8 +26,31 @@ HEALTH_BOX_W,   HEALTH_BOX_H   = 30, 30
 HEALTH_BOX_GAP                  = 5
 HEALTH_MARGIN_BOTTOM            = 10
 
+ENERGY_LABEL_W, ENERGY_LABEL_H = 80, 30
+BLOCK_SIZE      = 16                 # 能量小方塊邊長
+BLOCK_GAP       = 2
+ENERGY_MARGIN_B = 10
+
 # 中文年級名稱 (可自行擴充到大二/大三……)
 GRADE_NAME = ["大一", "大二", "大三", "大四", "研一", "研二"]
+
+# ------- 能量（10 格，藍＝有，紅＝空） -------
+def _draw_energy_blocks(surf, x, y, energy):
+    """
+    energy: int 0~100，畫 10 個 16×16 小方塊
+    """
+    blocks = 10
+    size   = 16
+    gap    = 2
+    filled = max(0, min(energy // 10, blocks))   # 0~10
+
+    for i in range(blocks):
+        col = ENERGY_BLUE if i < filled else ENERGY_RED
+        rect = pygame.Rect(
+            x + i * (size + gap), y, size, size
+        )
+        pygame.draw.rect(surf, col, rect)
+        pygame.draw.rect(surf, (30,30,30), rect, 1)   # 邊框
 
 def draw_hud(screen: pygame.Surface,
              font:   pygame.font.Font,
@@ -116,38 +139,18 @@ def draw_hud(screen: pygame.Surface,
     )
 
     # --- (4) 最下方：體力血條 ---
-    hb_left = MARGIN_L
-    hb_top  = screen.get_height() - HEALTH_MARGIN_BOTTOM - HEALTH_LABEL_H
-    health_label_rect = pygame.Rect(
-        hb_left, hb_top, HEALTH_LABEL_W, HEALTH_LABEL_H
+    energy_y = HEIGHT - ENERGY_MARGIN_B - ENERGY_LABEL_H
+    energy_lbl_rect = pygame.Rect(MARGIN_L, energy_y, ENERGY_LABEL_W, ENERGY_LABEL_H)
+    pygame.draw.rect(screen, LABEL_BG,   energy_lbl_rect)
+    pygame.draw.rect(screen, LABEL_EDGE, energy_lbl_rect, EDGE_W)
+    screen.blit(font.render("體力", True, LABEL_FG),
+                font.render("體力", True, LABEL_FG).get_rect(center=energy_lbl_rect.center))
+
+    # 能量 10 格
+    _draw_energy_blocks(
+        screen,
+        x = energy_lbl_rect.right + BLOCK_GAP,
+        y = energy_lbl_rect.top + (ENERGY_LABEL_H - BLOCK_SIZE)//2,
+        energy = player.energy
     )
-    pygame.draw.rect(screen, LABEL_BG,   health_label_rect)
-    pygame.draw.rect(screen, LABEL_EDGE, health_label_rect, EDGE_W)
-    hp_lbl = font.render("體力", True, LABEL_FG)
-    hp_rect = hp_lbl.get_rect(center=health_label_rect.center)
-    screen.blit(hp_lbl, hp_rect)
 
-    # 畫體力格子 (藍色代表剩餘，紅色代表已耗盡)
-    start_x = health_label_rect.right + HEALTH_BOX_GAP
-    start_y = health_label_rect.top
-    cur_hp  = max(0, min(player.health, player.health_max))
-    max_hp  = player.health_max
-
-    # 藍色格子：剩餘
-    for i in range(cur_hp):
-        r = pygame.Rect(
-            start_x + i * (HEALTH_BOX_W + HEALTH_BOX_GAP),
-            start_y, HEALTH_BOX_W, HEALTH_BOX_H
-        )
-        pygame.draw.rect(screen, LABEL_BG,   r)
-        pygame.draw.rect(screen, LABEL_EDGE, r, EDGE_W)
-
-    # 紅色格子：耗盡
-    for j in range(max_hp - cur_hp):
-        idx = cur_hp + j
-        r = pygame.Rect(
-            start_x + idx * (HEALTH_BOX_W + HEALTH_BOX_GAP),
-            start_y, HEALTH_BOX_W, HEALTH_BOX_H
-        )
-        pygame.draw.rect(screen, (200, 30, 30), r)
-        pygame.draw.rect(screen, LABEL_EDGE,     r, EDGE_W)

@@ -16,6 +16,8 @@ RESTAURANT_COLOR = (255, 165,   0)
 CLASSROOM_COLOR  = (128,   0, 128)
 CAT_COLOR        = (255, 180,   0)
 GYM_COLOR      = (100, 100, 110) 
+ENERGY_BLUE = (  0, 120, 255)   # 尚有體力
+ENERGY_RED  = (220,  60,  60)   # 已耗盡
 # 時間相關
 HOURS_PER_MONTH = 40
 TOTAL_MONTHS    = 4
@@ -107,9 +109,10 @@ BUILDING_INFO = {
 
 # 各種行動所需小時數
 ACTION_HOURS = {
-    "CAT_TOUCH":   2,
-    "CAT_FEED":    4,
-    "CAT_MEOW":    0.5,
+    "CAT_TOUCH":   1,
+    "CAT_FEED":    1,
+    "CAT_MEOW":    1,
+    "CAT_VOLUNTEER" :   6,
     "CAT_IDLE":    0,
     "EAT":         2,
     "STUDY":       7,
@@ -124,6 +127,7 @@ ACTION_HOURS = {
     "PLAY_GAME":    4,
     "PROJECT":      8,
     "GO_OUT":       6,
+    "SLEEP_HOME":   4,
 
 }
 
