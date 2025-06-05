@@ -27,8 +27,10 @@ HEALTH_BOX_GAP                  = 5
 HEALTH_MARGIN_BOTTOM            = 10
 
 ENERGY_LABEL_W, ENERGY_LABEL_H = 80, 30
-BLOCK_SIZE      = 22                 # 能量小方塊邊長
-BLOCK_GAP       = 3
+# 新版 ── 長方形方塊
+BLOCK_W        = 36   # 寬度 (←→) －－你想要的「長度」
+BLOCK_H        = 20   # 高度 (↕)                # 能量小方塊邊長
+BLOCK_GAP       = 5
 ENERGY_MARGIN_B = 10
 
 # 中文年級名稱 (可自行擴充到大二/大三……)
@@ -36,22 +38,18 @@ GRADE_NAME = ["大一", "大二", "大三", "大四", "研一", "研二"]
 
 # ------- 能量（10 格，藍＝有，紅＝空） -------
 def _draw_energy_blocks(surf, x, y, energy):
-    """
-    energy: int 0~100，畫 10 個 16×16 小方塊
-    """
     blocks = 10
-    size   = 16
-    gap    = 2
-    filled = max(0, min(energy // 10, blocks))   # 0~10
+    filled = max(0, min(energy // 10, blocks))
 
     for i in range(blocks):
-        col = ENERGY_BLUE if i < filled else ENERGY_RED
+        col  = ENERGY_BLUE if i < filled else ENERGY_RED
         rect = pygame.Rect(
-            x + i * (size + gap), y, size, size
+            x + i * (BLOCK_W + BLOCK_GAP),   # ← 用 BLOCK_W
+            y,
+            BLOCK_W, BLOCK_H                 # ← 用 BLOCK_W / BLOCK_H
         )
         pygame.draw.rect(surf, col, rect)
-        pygame.draw.rect(surf, (30,30,30), rect, 1)   # 邊框
-
+        pygame.draw.rect(surf, (30, 30, 30), rect, 1)  # 邊框
 def draw_hud(screen: pygame.Surface,
              font:   pygame.font.Font,
              player,
@@ -150,7 +148,7 @@ def draw_hud(screen: pygame.Surface,
     _draw_energy_blocks(
         screen,
         x = energy_lbl_rect.right + BLOCK_GAP,
-        y = energy_lbl_rect.top + (ENERGY_LABEL_H - BLOCK_SIZE)//2,
+        y = energy_lbl_rect.top + (ENERGY_LABEL_H - BLOCK_H)//2,
         energy = player.energy
     )
 
