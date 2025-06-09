@@ -63,7 +63,7 @@ class Building:
         每次互動扣 1 點體力；若為 cat，回傳 "meow" 事件。
         否則執行 BUILDING_INFO[kind]["effect"] 的效果。
         """
-        player.health -= 1
+        
 
         if self.kind == "cat":
             return "meow"
@@ -93,9 +93,6 @@ class Building:
             surf = get_club_surface()
             screen.blit(surf, (draw_x, draw_y))
         elif self.kind == "McDonald":
-            # 如果有餐廳圖，請在這裡加載並繪製
-            # surf = get_restaurant_surface()
-            # screen.blit(surf, (draw_x, draw_y))
             surf = get_McDonald_surface()
             screen.blit(surf, (draw_x, draw_y))
         elif self.kind == "house":
