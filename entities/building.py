@@ -103,39 +103,11 @@ class Building:
         return None
 
     def draw(self, screen, offset):
-        """
-        offset = (cam_x, cam_y)，表示鏡頭偏移量。
-        world_x - cam_x  = 螢幕上的 x
-        world_y - cam_y  = 螢幕上的 y
-        """
         cam_x, cam_y = offset
-        draw_x = self.rect.x - cam_x
-        draw_y = self.rect.y - cam_y
+        draw_pos = (self.rect.x - cam_x, self.rect.y - cam_y)
 
-        if self.kind == "cat":
-            surf = get_cat_surface()
-            screen.blit(surf, (draw_x, draw_y))
-        elif self.kind == "gym":
-            surf = get_gym_surface()
-            screen.blit(surf, (draw_x, draw_y))
-        elif self.kind == "library":
-            surf = get_library_surface()
-            screen.blit(surf, (draw_x, draw_y))
-        elif self.kind == "club":
-            surf = get_club_surface()
-            screen.blit(surf, (draw_x, draw_y))
-        elif self.kind == "McDonald":
-            surf = get_McDonald_surface()
-            screen.blit(surf, (draw_x, draw_y))
-        elif self.kind == "house":
-            surf = get_house_surface()
-            screen.blit(surf, (draw_x, draw_y))
-        elif self.kind == "door":
-            surf = get_door_surface()
-            screen.blit(surf, (draw_x, draw_y))
-        else:
-            surf = get_build_surface()
-            screen.blit(surf, (draw_x, draw_y))
+        surf = get_surface(self.kind)
+        screen.blit(surf, draw_pos)
         
         #若未來要依 kind 畫不同圖，請在這裡改成：
         # elif self.kind == "classroom":
