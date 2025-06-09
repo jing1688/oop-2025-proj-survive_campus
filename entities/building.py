@@ -2,6 +2,10 @@
 
 import pygame
 from constants import *
+
+# --------------------------------------------
+# 全域快取：已載入並縮放好的 Surface
+_surface_cache: dict[str, pygame.Surface] = {}
 # --------------------------------------------
 # 全域快取：貓咪圖片
 _cat_surface = None
