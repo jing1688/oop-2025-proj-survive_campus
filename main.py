@@ -248,7 +248,7 @@ def main():
                 # --------- 跨月檢查 ---------
                 current_month_idx = int(hours_spent) // HOURS_PER_MONTH
                 if current_month_idx != last_month_idx:
-                    player.energy += min (50+player.energy, player.energy_max)  # 能量 +50
+                    player.energy = min (50+player.energy, player.energy_max)  # 能量 +50
                     player.money  += 1000
                     last_month_idx = current_month_idx
 
