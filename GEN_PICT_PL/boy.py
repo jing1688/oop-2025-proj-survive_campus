@@ -85,7 +85,7 @@ for x in range(8,12):
 scale = 10
 big = img.resize((w*scale, h*scale), Image.NEAREST)
 
-out_path = "/mnt/data/handsome_pixel.png"
-big.save(out_path)
 
-out_path
+big.save()
+
+
