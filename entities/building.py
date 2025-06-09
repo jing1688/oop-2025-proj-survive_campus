@@ -38,20 +38,6 @@ def get_surface(kind: str) -> pygame.Surface:
 
 
 
-def get_build_surface():
-    global _building_surface
-    if _building_surface is None:
-        temp = pygame.image.load(A_Building_Path).convert_alpha()
-        _building_surface = pygame.transform.smoothscale(temp, BUILDING_SIZE)
-    return _building_surface
-def get_gym_surface():
-    surf = pygame.image.load(GYM_IMAGE_PATH).convert_alpha()
-    return pygame.transform.smoothscale(surf, BUILDING_SIZE)
-
-def get_library_surface():
-    surf = pygame.image.load(LIBRARY_IMAGE_PATH).convert_alpha()
-    return pygame.transform.smoothscale(surf, BUILDING_SIZE) 
-
 def get_club_surface():
     surf = pygame.image.load(CLUB_IMAGE_PATH).convert_alpha()
     return pygame.transform.smoothscale(surf, BUILDING_SIZE)
