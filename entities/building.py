@@ -37,17 +37,6 @@ def get_surface(kind: str) -> pygame.Surface:
     return surf
 
 
-def get_cat_surface():
-    global _cat_surface
-    if _cat_surface is None:
-        temp = pygame.image.load(CAT_IMAGE_PATH).convert_alpha()
-        # 如果你想要 50×50 大小，可以改成 (50, 50)
-        # 但通常建築大小跟 BUILDING_SIZE 一致較好：
-        _cat_surface = pygame.transform.smoothscale(temp, BUILDING_SIZE)
-    return _cat_surface
-
-# 全域快取：其他自訂建築圖 (A_Building_Path)
-_building_surface = None
 
 def get_build_surface():
     global _building_surface
