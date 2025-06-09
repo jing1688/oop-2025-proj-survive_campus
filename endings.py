@@ -32,7 +32,7 @@ FINAL_ENDINGS = [
             (p.academics + p.social + p.health) / 3 >= 50
             and min(p.academics, p.social, p.health) < 80      # 至少有一科 < 80
         ),
-        "image": "pictures\OIP.jpg",
+        "image":None,
     },
 
     # 結局 C ─ 孤單結局
