@@ -134,7 +134,7 @@ def main():
                 elif submenu_kind == 'restaurant':
                     if e.key == K_y:
                         hours_spent += ACTION_HOURS["EAT"]
-                        player.energy += 10
+                        player.energy = min (10+player.energy, player.energy_max)  # 能量 +10
                         player.social += 1
                         player.health += 1
                         player.money -= 200
@@ -155,7 +155,7 @@ def main():
                     elif e.key == K_3:
                         hours_spent += ACTION_HOURS["SLEEP_CLASS"]
                         player.health += 2
-                        player.energy += 5
+                        player.energy = min (5+player.energy, player.energy_max)  # 能量 +5
                         feedback_text = "睡著了"
                 elif submenu_kind == 'gym':
                     if e.key == K_y:
@@ -199,7 +199,7 @@ def main():
                         feedback_text = "再吵把你大薯鏟成小薯"
                     elif e.key == K_2:
                         hours_spent += ACTION_HOURS["MCDONALD"]
-                        player.energy += 25
+                        player.energy = min(25+player.energy, player.energy_max)    
                         player.money -= 300
                         feedback_text = "你吃了麥當勞補充一點能量，感覺BMI上升了"
                     elif e.key == K_3:
@@ -219,7 +219,7 @@ def main():
                         feedback_text = "你熬夜趕專案，突然覺得這輩子也就這樣了"
                     elif e.key == K_3:
                         hours_spent += ACTION_HOURS["SLEEP_HOME"]
-                        player.energy += 30
+                        player.energy = min(30+player.energy, player.energy_max)
                         player.health += 5
                         player.social -= 1
                         feedback_text = "你回家休息，感覺好多了"
@@ -248,7 +248,7 @@ def main():
                 # --------- 跨月檢查 ---------
                 current_month_idx = int(hours_spent) // HOURS_PER_MONTH
                 if current_month_idx != last_month_idx:
-                    player.energy = player.energy_max
+                    player.energy += min (50+player.energy, player.energy_max)  # 能量 +50
                     player.money  += 1000
                     last_month_idx = current_month_idx
 
