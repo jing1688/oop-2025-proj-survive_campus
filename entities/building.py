@@ -5,6 +5,16 @@ from constants import *
 # --------------------------------------------
 # 全域快取：貓咪圖片
 _cat_surface = None
+_KIND2PATH = {
+    "cat"      : CAT_IMAGE_PATH,
+    "gym"      : GYM_IMAGE_PATH,
+    "library"  : LIBRARY_IMAGE_PATH,
+    "club"     : CLUB_IMAGE_PATH,
+    "McDonald" : McDonald_IMAGE_PATH,
+    "house"    : HOUSE_IMAGE_PATH,
+    "door"     : DOOR_IMAGE_PATH,
+    # 其餘未知類型走 fallback
+}
 
 def get_cat_surface():
     global _cat_surface
