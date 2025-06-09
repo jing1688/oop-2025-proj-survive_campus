@@ -16,6 +16,24 @@ _KIND2PATH = {
     # 其餘未知類型走 fallback
 }
 _FALLBACK_PATH = A_Building_Path
+
+def get_surface(kind: str) -> pygame.Surface:
+    """
+    回傳對應 kind 的建築圖；已做大小縮放與快取。
+    若 kind 不在表中 → 使用 _FALLBACK_PATH。
+    """
+    if kind in _surface_cache:
+        return _surface_cache[kind]
+
+    # 圖檔路徑
+    path = _KIND2PATH.get(kind, _FALLBACK_PATH)
+    surf = pygame.image.load(path).convert_alpha()
+    surf = pygame.transform.smoothscale(surf, BUILDING_SIZE)
+
+    _surface_cache[kind] = surf
+    return surf
+
+
 def get_cat_surface():
     global _cat_surface
     if _cat_surface is None:
