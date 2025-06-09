@@ -46,7 +46,7 @@ FINAL_ENDINGS = [
     {
         "key": "結局D  被二一邊緣",
         "condition": lambda p, h: p.academics < 30,
-        "image": "pictures/ending_D.png",
+        "image": "pictures/bad_end1.png",
     },
 
     # 結局 E ─ 不能生活（健康或金錢崩盤）
