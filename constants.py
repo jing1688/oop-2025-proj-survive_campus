@@ -43,7 +43,7 @@ BUILDING_INFO = {
     # 運動：Energy -15、Health +3
     "effect": lambda p: (
         setattr(p, "energy",   p.energy - 15),
-        setattr(p, "health",   min(p.health_max, p.health + 3))
+        setattr(p, "health",   p.health + 3)
     ),
     },
     "classroom": {
