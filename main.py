@@ -1,7 +1,6 @@
 import pygame
 import sys
 from pygame.locals import *
-
 from constants import *
 from utils.font_loader import get_font
 from entities.player import Player
