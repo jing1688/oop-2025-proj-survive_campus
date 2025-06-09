@@ -22,10 +22,10 @@ class Player:
         draw 時會扣掉 offset 才轉成螢幕座標。
         """
         self.rect         = pygame.Rect(x, y, PLAYER_SIZE, PLAYER_SIZE)
-        self.health       = ENERGY_MAX
-        self.health_max   = ENERGY_MAX
+        self.health       = 0
         self.money        = 0
         self.energy       = 100
+        self.energy_max   = ENERGY_MAX
         self.social       = 0
         self.academics    = 0
         self.explore      = 0
