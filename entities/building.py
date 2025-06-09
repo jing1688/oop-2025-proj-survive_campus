@@ -15,7 +15,7 @@ _KIND2PATH = {
     "door"     : DOOR_IMAGE_PATH,
     # 其餘未知類型走 fallback
 }
-
+_FALLBACK_PATH = A_Building_Path
 def get_cat_surface():
     global _cat_surface
     if _cat_surface is None:
