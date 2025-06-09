@@ -81,11 +81,7 @@ BUILDING_INFO = {
     "McDonald": {
         "color": (255, 0, 0),  # 麥當勞顏色
         "prompt": "要去麥當勞嗎？ (Y/N)",
-        # "effect": lambda p: (
-        #     setattr(p, "energy",   p.energy + 10),
-        #     setattr(p, "social",   p.social + 1),
-        #     setattr(p, "health",   p.health - 1),
-        # ),
+        
     },
     "house": {
         "color": (200, 200, 200),  # 房子顏色
