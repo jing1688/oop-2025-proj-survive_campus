@@ -86,6 +86,6 @@ scale = 10
 big = img.resize((w*scale, h*scale), Image.NEAREST)
 
 
-big.save()
+big.save('boy.png', 'PNG')
 
 
