@@ -38,14 +38,6 @@ def get_surface(kind: str) -> pygame.Surface:
 
 
 
-def get_club_surface():
-    surf = pygame.image.load(CLUB_IMAGE_PATH).convert_alpha()
-    return pygame.transform.smoothscale(surf, BUILDING_SIZE)
-
-def get_McDonald_surface():
-    surf = pygame.image.load(McDonald_IMAGE_PATH).convert_alpha()
-    # 假設沒有餐廳圖片，返回一個空的 Surface
-    return pygame.transform.smoothscale(surf, BUILDING_SIZE)
 def get_house_surface():
     surf = pygame.image.load(HOUSE_IMAGE_PATH).convert_alpha()
     return pygame.transform.smoothscale(surf, BUILDING_SIZE)
