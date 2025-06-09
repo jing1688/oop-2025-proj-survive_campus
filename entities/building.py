@@ -37,14 +37,6 @@ def get_surface(kind: str) -> pygame.Surface:
     return surf
 
 
-
-def get_house_surface():
-    surf = pygame.image.load(HOUSE_IMAGE_PATH).convert_alpha()
-    return pygame.transform.smoothscale(surf, BUILDING_SIZE)
-
-def get_door_surface():
-    surf = pygame.image.load(DOOR_IMAGE_PATH).convert_alpha()
-    return pygame.transform.smoothscale(surf, BUILDING_SIZE)
 # --------------------------------------------
 class Building:
     def __init__(self, x, y, kind):
