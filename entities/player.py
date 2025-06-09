@@ -1,7 +1,7 @@
 # entities/player.py
 from acitivies.club import Club
 import pygame
-from constants import PLAYER_SIZE, GOBLIN_IMAGE_PATH, ENERGY_MAX 
+from constants import PLAYER_SIZE, GOBLIN_IMAGE_PATH, ENERGY_MAX,BOY_IMAGE_PATH
 
 # --------------------------------------------
 # 全域快取：玩家圖
@@ -14,6 +14,14 @@ def get_goblin_surface():
         _gob_surface = pygame.transform.smoothscale(tmp, (PLAYER_SIZE, PLAYER_SIZE))
     return _gob_surface
 
+# 新增：男生圖片快取
+_boy_surface = None
+def get_boy_surface():
+    global _boy_surface
+    if _boy_surface is None:
+        tmp = pygame.image.load(BOY_IMAGE_PATH).convert_alpha()
+        _boy_surface = pygame.transform.smoothscale(tmp, (PLAYER_SIZE, PLAYER_SIZE))
+    return _boy_surface
 # --------------------------------------------
 class Player:
     def __init__(self, x, y):
