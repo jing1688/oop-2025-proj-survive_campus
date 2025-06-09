@@ -52,12 +52,14 @@ class Player:
             self.rect.topleft = old
 
     def draw(self, screen, offset):
-        """
-        offset = (cam_x, cam_y)：將世界座標轉成螢幕座標再畫圖。
-        world_x - cam_x = 螢幕上的 x，world_y - cam_y = 螢幕上的 y。
-        """
         cam_x, cam_y = offset
         draw_x = self.rect.x - cam_x
         draw_y = self.rect.y - cam_y
-        surf = get_goblin_surface()
+
+        # 條件：health 或 academics > 20 就換帥哥
+        if self.health > 20 or self.academics > 20:
+            surf = get_boy_surface()
+        else:
+            surf = get_goblin_surface()
+
         screen.blit(surf, (draw_x, draw_y))
