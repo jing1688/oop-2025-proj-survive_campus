@@ -62,6 +62,7 @@ def draw_minimap(screen: pygame.Surface, player, buildings):
     py = player.rect.centery * MINIMAP_SCALE_Y + rect.top
     pygame.draw.circle(screen, MINIMAP_PLAYER_COL, (int(px), int(py)), 4)
 
+#嗨
 # ------------------------------------------------------------------
 # 主迴圈
 # ------------------------------------------------------------------
